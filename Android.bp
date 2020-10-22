@@ -8,6 +8,7 @@ rust_library {
     edition: "2018",
     rustlibs: [
         "libcfg_if",
+        "libinstant",
         "liblibc",
         "libsmallvec",
     ],
@@ -22,6 +23,7 @@ rust_defaults {
     edition: "2018",
     rustlibs: [
         "libcfg_if",
+        "libinstant",
         "liblibc",
         "libsmallvec",
     ],
@@ -39,5 +41,6 @@ rust_test {
 
 // dependent_library ["feature_list"]
 //   cfg-if-0.1.10
+//   instant-0.1.7
 //   libc-0.2.79 "default,std"
 //   smallvec-1.4.2
