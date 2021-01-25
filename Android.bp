@@ -40,7 +40,7 @@ rust_test {
 }
 
 // dependent_library ["feature_list"]
-//   cfg-if-0.1.10
-//   instant-0.1.7
-//   libc-0.2.79 "default,std"
-//   smallvec-1.4.2
+//   cfg-if-1.0.0
+//   instant-0.1.9
+//   libc-0.2.81 "default,std"
+//   smallvec-1.5.1
