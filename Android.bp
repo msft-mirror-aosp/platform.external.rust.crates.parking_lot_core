@@ -60,15 +60,19 @@ rust_library {
     ],
 }
 
-rust_defaults {
-    name: "parking_lot_core_test_defaults",
-    crate_name: "parking_lot_core",
+rust_test {
+    name: "parking_lot_core_test_src_lib",
     // has rustc warnings
-    srcs: ["src/lib.rs"],
+    host_supported: true,
+    crate_name: "parking_lot_core",
     cargo_env_compat: true,
     cargo_pkg_version: "0.8.5",
+    srcs: ["src/lib.rs"],
     test_suites: ["general-tests"],
     auto_gen_config: true,
+    test_options: {
+        unit_test: true,
+    },
     edition: "2018",
     rustlibs: [
         "libcfg_if",
@@ -76,17 +80,4 @@ rust_defaults {
         "liblibc",
         "libsmallvec",
     ],
-}
-
-rust_test_host {
-    name: "parking_lot_core_host_test_src_lib",
-    defaults: ["parking_lot_core_test_defaults"],
-    test_options: {
-        unit_test: true,
-    },
-}
-
-rust_test {
-    name: "parking_lot_core_device_test_src_lib",
-    defaults: ["parking_lot_core_test_defaults"],
 }
