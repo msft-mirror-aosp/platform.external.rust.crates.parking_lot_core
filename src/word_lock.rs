@@ -154,7 +154,7 @@ impl WordLock {
                 if let Err(x) = self.state.compare_exchange_weak(
                     state,
                     state.with_queue_head(thread_data),
-                    Ordering::AcqRel,
+                    Ordering::Release,
                     Ordering::Relaxed,
                 ) {
                     return x;
@@ -238,7 +238,7 @@ impl WordLock {
                 }
 
                 // Need an acquire fence before reading the new queue
-                fence_acquire(&self.state);
+                fence(Ordering::Acquire);
                 continue;
             }
 
@@ -263,7 +263,7 @@ impl WordLock {
                         continue;
                     } else {
                         // Need an acquire fence before reading the new queue
-                        fence_acquire(&self.state);
+                        fence(Ordering::Acquire);
                         continue 'outer;
                     }
                 }
@@ -283,17 +283,6 @@ impl WordLock {
             }
             break;
         }
-    }
-}
-
-// Thread-Sanitizer only has partial fence support, so when running under it, we
-// try and avoid false positives by using a discarded acquire load instead.
-#[inline]
-fn fence_acquire(a: &AtomicUsize) {
-    if cfg!(tsan_enabled) {
-        let _ = a.load(Ordering::Acquire);
-    } else {
-        fence(Ordering::Acquire);
     }
 }
 
