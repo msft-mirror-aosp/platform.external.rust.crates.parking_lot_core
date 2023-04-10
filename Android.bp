@@ -45,7 +45,7 @@ rust_library {
     host_supported: true,
     crate_name: "parking_lot_core",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.9.5",
+    cargo_pkg_version: "0.9.7",
     srcs: ["src/lib.rs"],
     edition: "2018",
     rustlibs: [
@@ -58,6 +58,8 @@ rust_library {
         "com.android.btservices",
         "com.android.virt",
     ],
+    product_available: true,
+    vendor_available: true,
     min_sdk_version: "29",
 }
 
@@ -67,7 +69,7 @@ rust_test {
     host_supported: true,
     crate_name: "parking_lot_core",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.9.5",
+    cargo_pkg_version: "0.9.7",
     srcs: ["src/lib.rs"],
     test_suites: ["general-tests"],
     auto_gen_config: true,
